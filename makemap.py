@@ -15,12 +15,19 @@ from pathlib import Path
 
 # define a global endmember dict, linking database, minerals and all endmembers
 em_dict_global = {}
+
 em_dict_global["jun92d"] = {}
 em_dict_global["jun92d"]["biotite"] = "Ann", "Phl"
 em_dict_global["jun92d"]["white mica"] = "Ms", "Pg", "MgC", "FeC"
 em_dict_global["jun92d"]["margarite"] = "Mrg"
 em_dict_global["jun92d"]["garnet"] = "Gr", "Py", "Alm", "spf"
 em_dict_global["jun92d"]["chlorite"] = "Ame", "Pen", "FeAm", "FeP"
+
+em_dict_global["td-ds62-mb50-v07"] = {}
+em_dict_global["td-ds62-mb50-v07"]["garnet"] = "py", "alm", "gr", "kho"
+em_dict_global["td-ds62-mb50-v07"]["epidote"] = "cz", "ep", "fep"
+em_dict_global["td-ds62-mb50-v07"]["calcic amphibole"] = "tr", "tsm", "pargm", "glm", "cumm", "grnm", "a", "b", "mrb", "kprg", "tts"
+em_dict_global["td-ds62-mb50-v07"]["clinopyroxene"] = "jd", "di", "hed", "acmm1", "om", "cfm", "jac"
 
 
 class MakeMapper:
