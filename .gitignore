@@ -1,6 +1,9 @@
 *.code-workspace
-pixelmaps/
-pixelmaps/*
+pixelmaps_ex/
+pixelmaps_ex/*
+
+_pixelmaps/
+_pixelmaps/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

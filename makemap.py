@@ -107,7 +107,8 @@ class MakeMapper:
         self.bulk = bulk
         self.pixmap_names = pixmap_names
 
-    def read_pixelmap(parent_dir, file_name):
+    @staticmethod
+    def read_pixelmap(parent_dir, file_name, sep="    "):
         """func to be used in read_mineral_variable() method.
         read a pixelmap .txt file and adjust indexing to python convention.
 
@@ -119,9 +120,10 @@ class MakeMapper:
             pd.DataFrame: df of pixelmap
         """
         file_path = Path(parent_dir, file_name)
-        pixelmap = pd.read_csv(file_path, sep="    ",
+        pixelmap = pd.read_csv(file_path, sep=sep,
                                header=None,
                                names=["px_idx", "value"],
+                               dtype={"px_idx": np.int16, "value": np.float32},
                                engine="python")
 
         # adjust idx for python convention
@@ -129,6 +131,7 @@ class MakeMapper:
 
         return pixelmap
 
+    @staticmethod
     def PT_to_pixelmap(pixelmap, T_grid, P_grid):
         """func to be used in read_mineral_variable() method.
 
@@ -145,7 +148,7 @@ class MakeMapper:
 
         return pixelmap
 
-    def read_mineral_variable(self, mineral, compositional_var="Mg#"):
+    def read_mineral_variable(self, mineral, compositional_var="Mg#", sep="    "):
         """Read pixelmap for a specified variable of interest.
         Maps for all endmembers of mineral (specified in database) are read
         and concatenated.
@@ -171,7 +174,7 @@ class MakeMapper:
 
         pixel_map_allEndMemebers = pd.DataFrame()
         for file_name in filenames_list:
-            px_map = MakeMapper.read_pixelmap(parent_dir=self.parent_dir, file_name=file_name)
+            px_map = MakeMapper.read_pixelmap(parent_dir=self.parent_dir, file_name=file_name, sep=sep)
             px_map["endmember_var"] = file_name
             pixel_map_allEndMemebers = pd.concat((pixel_map_allEndMemebers, px_map), axis=0)
 
